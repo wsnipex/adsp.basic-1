@@ -15,7 +15,7 @@ find_path( LIBSAMPLERATE_INCLUDE_DIRS "samplerate.h"
            PATH_SUFFIXES "samplerate" )
 
 find_library( LIBSAMPLERATE_LIBRARIES
-              NAMES "libsamplerate"
+              NAMES "samplerate"
               PATH_SUFFIXES "libsamplerate" )
 endif()
 
