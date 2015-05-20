@@ -8,11 +8,9 @@ enable_language(CXX)
 
 find_package(kodi REQUIRED)
 find_package(kodiplatform REQUIRED)
-find_package(libsamplerate REQUIRED)
 
 include_directories(${kodiplatform_INCLUDE_DIRS}
-                    ${KODI_INCLUDE_DIR}
-                    ${LIBSAMPLERATE_INCLUDE_DIRS})
+                    ${KODI_INCLUDE_DIR})
 
 set(BASIC_SOURCES src/AudioDSPBasic.cpp
                   src/GUIDialogSpeakerDistance.cpp
@@ -28,8 +26,7 @@ set(BASIC_SOURCES src/AudioDSPBasic.cpp
                   src/filter/mkfilter.cpp
                   src/AudioDSPSoundTest.cpp)
 
-set(DEPLIBS ${kodiplatform_LIBRARIES}
-            ${LIBSAMPLERATE_LIBRARIES})
+set(DEPLIBS ${kodiplatform_LIBRARIES})
 
 build_addon(adsp.basic BASIC DEPLIBS)
 
