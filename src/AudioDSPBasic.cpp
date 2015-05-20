@@ -158,8 +158,6 @@ AE_DSP_ERROR cDSPProcessorStream::StreamDestroy()
 
 AE_DSP_ERROR cDSPProcessorStream::StreamIsModeSupported(AE_DSP_MODE_TYPE mode_type, unsigned int mode_id, int unique_db_mode_id)
 {
-  (void) unique_db_mode_id;
-
   for (unsigned int i = 0; i < m_MasterModes.size(); i++)
   {
     if (m_MasterModes[i]->m_ModeInfoStruct.iModeType == mode_type &&
@@ -288,8 +286,6 @@ AE_DSP_ERROR cDSPProcessorStream::StreamInitialize(const AE_DSP_SETTINGS *settin
 
 bool cDSPProcessorStream::InputProcess(const float **array_in, unsigned int samples)
 {
-  (void) array_in;
-  (void) samples;   // Remove compiler warning
   return true;
 }
 
@@ -326,21 +322,17 @@ unsigned int cDSPProcessorStream::InputResampleProcess(float **array_in, float *
 
 unsigned int cDSPProcessorStream::PreProcessNeededSamplesize(unsigned int mode_id)
 {
-  (void) mode_id;
   return 0;
 }
 
 float cDSPProcessorStream::PreProcessGetDelay(unsigned int mode_id)
 {
-  (void) mode_id;
   return 0.0f;
 }
 
 unsigned int cDSPProcessorStream::PreProcess(unsigned int mode_id, float **array_in, float **array_out, unsigned int samples)
 {
-  (void) mode_id;
-  samples = CopyInToOut(array_in, array_out, samples);
-  return samples;
+  return CopyInToOut(array_in, array_out, samples);
 }
 
 /*!
@@ -350,9 +342,6 @@ unsigned int cDSPProcessorStream::PreProcess(unsigned int mode_id, float **array
 
 AE_DSP_ERROR cDSPProcessorStream::MasterProcessSetMode(AE_DSP_STREAMTYPE type, unsigned int mode_id, int unique_db_mode_id)
 {
-  (void) type;
-  (void) unique_db_mode_id;   // Remove compiler warning
-
   for (unsigned int i = 0; i < m_MasterModes.size(); i++)
   {
     if (m_MasterModes[i] != NULL && m_MasterModes[i]->GetId() == mode_id)
@@ -428,14 +417,11 @@ const char *cDSPProcessorStream::MasterProcessGetStreamInfoString()
 
 unsigned int cDSPProcessorStream::PostProcessNeededSamplesize(unsigned int modeId)
 {
-  (void) modeId;
   return 0;
 }
 
 float cDSPProcessorStream::PostProcessGetDelay(unsigned int modeId)
 {
-  (void) modeId;
-
   CLockObject lock(g_DSPProcessor.m_Mutex);
 
   float delay = 0.0;
