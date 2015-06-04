@@ -29,7 +29,8 @@ set(BASIC_SOURCES src/AudioDSPBasic.cpp
                   src/filter/mkfilter.cpp
                   src/AudioDSPSoundTest.cpp)
 
-set(DEPLIBS ${platform_LIBRARIES})
+set(DEPLIBS ${kodiplatform_LIBRARIES}
+            ${platform_LIBRARIES})
 
 build_addon(adsp.basic BASIC DEPLIBS)
 
